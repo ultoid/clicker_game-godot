@@ -39,9 +39,9 @@ This template provides all the core mechanics needed for a clicker game, includi
 - Tracks contributions from each system
 
 ## 🛠️ How to Use
-####1. Clone or download this repository.
-####2. Open in Godot 4.
-####3. Run `main.tscn` to test the game.
+#### 1. Clone or download this repository.
+#### 2. Open in Godot 4.
+#### 3. Run `main.tscn` to test the game.
 
 ### Customization
 - Change shapes: Replace images in `res://assets/` or modify the `shapes` array.
