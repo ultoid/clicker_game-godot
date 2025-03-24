@@ -1,0 +1,268 @@
+[gd_scene load_steps=2 format=3 uid="uid://2x0w8c466sub"]
+
+[ext_resource type="Texture2D" uid="uid://cp6cdotfh2o4h" path="res://icon.svg" id="1_fyqef"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 165.0
+grow_horizontal = 2
+current_tab = 0
+
+[node name="POWER UP" type="VBoxContainer" parent="CanvasLayer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/TabContainer/POWER UP"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_fyqef")
+expand_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "NORMAL POWER UP Level 1"
+
+[node name="Label2" type="Label" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "+1 Click"
+
+[node name="Button" type="Button" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "UPGRADE"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/TabContainer/POWER UP"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_fyqef")
+expand_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "SUPER POWER UP Level 1"
+
+[node name="Label2" type="Label" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "+1 Click"
+
+[node name="Button" type="Button" parent="CanvasLayer/TabContainer/POWER UP/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "UPGRADE"
+
+[node name="AUTO CLICK" type="VBoxContainer" parent="CanvasLayer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/TabContainer/AUTO CLICK"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_fyqef")
+expand_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "NORMAL AUTO CLICK Level 1"
+
+[node name="Label2" type="Label" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "+1 Click"
+
+[node name="Button" type="Button" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "UPGRADE"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/TabContainer/AUTO CLICK"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_fyqef")
+expand_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "SUPER AUTO CLICK Level 1"
+
+[node name="Label2" type="Label" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "+1 Click"
+
+[node name="Button" type="Button" parent="CanvasLayer/TabContainer/AUTO CLICK/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "UPGRADE"
+
+[node name="BOOSTER" type="VBoxContainer" parent="CanvasLayer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/TabContainer/BOOSTER"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_fyqef")
+expand_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "NORMAL BOOSTER Level 1"
+
+[node name="Label2" type="Label" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "+1 Click"
+
+[node name="Button" type="Button" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "UPGRADE"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/TabContainer/BOOSTER"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_fyqef")
+expand_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "SUPER BOOSTER Level 1"
+
+[node name="Label2" type="Label" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "+1 Click"
+
+[node name="Button" type="Button" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "UPGRADE"

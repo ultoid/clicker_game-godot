@@ -24,16 +24,27 @@ var boost_power_active: bool = false
 var boost_power_duration: float = 10.0
 
 # Referensi UI
-@onready var points_label: Label = $UI/VBoxContainer/PointsLabel
-@onready var total_click_label: Label = $UI/VBoxContainer/TotalClickLabel
-@onready var click_power_label: Label = $UI/VBoxContainer/ClickPowerLabel
+@onready var points_label: Label = $CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/PointsLabel
+@onready var total_click_label: Label = $CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/TotalClickLabel
+@onready var click_power_label: Label = $CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/ClickPowerLabel
 @onready var shape_sprite: Sprite2D = $UI/Shape/Shape2D 
-@onready var upgrade_cost_label: Label = $UI/VBoxContainer/GridContainer/UpgradeCostLabel
-@onready var power_up_cost_label: Label = $UI/VBoxContainer/GridContainer/PowerUpCostLabel
-@onready var auto_click_cost_label: Label = $UI/VBoxContainer/GridContainer/AutoClickCostLabel
-@onready var boost_cost_label: Label = $UI/VBoxContainer/GridContainer/BoostCostLabel
-@onready var boost_button: Button = $UI/VBoxContainer/GridContainer/ActivateBoost
+@onready var upgrade_cost_label: Label = $CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/UpgradeCostLabel
+@onready var level_click_detail: Label = $CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/LevelClickDetail
+@onready var power_up_cost_label: Label = $CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/PowerUpCostLabel
+@onready var power_up_detail: Label = $CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/PowerUpDetail
+@onready var auto_click_detail: Label = $CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/AutoClickDetail
+@onready var auto_click_cost_label: Label = $CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/AutoClickCostLabel
+@onready var boost_detail: Label = $CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/BoostDetail
+@onready var boost_cost_label: Label = $CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/BoostCostLabel
+@onready var boost_button: Button = $CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/ActivateBoost
+@onready var booster_timer = $BoosterTimer
 @onready var bounce_animation_player: AnimationPlayer = $UI/Shape/Shape2D/BounceAnimationPlayer
+@onready var click_from_upgrade_detail: Label = $CanvasLayer/TabContainer/DETAILS/MarginContainer/VBoxContainer/UpgradeClickDetail
+@onready var click_from_power_up_detail: Label = $CanvasLayer/TabContainer/DETAILS/MarginContainer/VBoxContainer/PowerUpClickDetail
+@onready var click_from_auto_click_detail: Label = $CanvasLayer/TabContainer/DETAILS/MarginContainer/VBoxContainer/AutoClickClickDetail
+@onready var click_from_booster_detail: Label = $CanvasLayer/TabContainer/DETAILS/MarginContainer/VBoxContainer/BoosterClickDetail
+@onready var update_upgrade_cost_button: Button = $CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/UpgradeButton
+@onready var shape_level_label: Label = $CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/TextureRect/ShapeLevelLabel
 
 # Array path gambar shape
 var shapes: Array = [
@@ -78,43 +89,69 @@ func update_ui():
 	click_power_label.text = "Click Power: %d" % (click_power_from_level + click_power_from_power_up + click_power_from_boost)
 	upgrade_cost_label.text = "Upgrade Cost: %d" % calculate_upgrade_cost(shape_level)
 	boost_cost_label.text = "Boost Cost: %d" % 200  # Biaya Boost
+	shape_level_label.text = "Lv.%d" % shape_level
+	level_click_detail.text = "Increase click power by %d" % click_power_from_level
+	power_up_detail.text = "Level %d: +%d Click" % [power_up_level, click_power_from_power_up]
+	update_upgrade_cost_button.text = "+%d\n Cost: %d Poin" % [calculate_click_power_from_level(shape_level+1) - calculate_click_power_from_level(shape_level), calculate_upgrade_cost(shape_level)]
+	
+	var auto_click_interval = max(1, 10 - auto_click_level) if auto_click_level <= 10 else 1
+	var clicks_per_second = float(auto_click_multiplier) / float(auto_click_interval)
+	auto_click_detail.text = "Level %d: %d Click / %d Second (%.2f Click/s)" % [
+		auto_click_level,       # Level Auto Click
+		auto_click_multiplier,  # Jumlah klik per interval
+		auto_click_interval,    # Interval waktu       
+		clicks_per_second       # Klik per detik
+	]
+	
+	click_from_upgrade_detail.text = "Click from Upgrade: %d Click (Level %d)" % [click_power_from_level, shape_level]
+	click_from_power_up_detail.text = "Click from Power Up: +%d Click\n• Normal Power Up : +%d Click (Level %d)\n• Super Power Up : + 0 Click (Level 0)" % [click_power_from_power_up, click_power_from_power_up, power_up_level]
+	click_from_auto_click_detail.text = "Click from Auto Click : %d  Click/ %d Second\n• Normal Auto Click : %d Click/ %d Second (Level %d)\n• Super Auto Click : 0 Click/ 0 Second (Level 0)" % [auto_click_multiplier, auto_click_interval, auto_click_multiplier, auto_click_interval, auto_click_level]
+	click_from_booster_detail.text = "Click from Booster : +%d Click" % click_power_from_boost
+	if boost_power_active:
+		var boost_time_left = int(booster_timer.time_left)
+		click_from_booster_detail.text += " (for %d Second)" % boost_time_left
+	boost_button.disabled = boost_power_active
 	
 	# Update biaya Power Up
 	var power_up_cost = 50 + (power_up_level * 10)
 	power_up_cost_label.text = "Power Up Cost: %d" % power_up_cost
 
 	# Update biaya Auto Click
-	var auto_click_cost = 100 + (auto_click_level * 20)
+	var n = auto_click_level + 5  # Menyesuaikan skala biaya
+	var a = 0
+	var b = 1
+	for i in range(2, n + 1):
+		var c = a + b
+		a = b
+		b = c
+	var auto_click_cost = b * 15  # Nilai Fibonacci ke-n
 	auto_click_cost_label.text = "Auto Click Cost: %d" % auto_click_cost
-	
-	# Hitung interval Auto Click
-	var auto_click_interval = max(1, 10 - auto_click_level) if auto_click_level <= 10 else 1
 
-	# Hitung klik per detik
-	var clicks_per_second = float(auto_click_multiplier) / float(auto_click_interval)
+func _on_booster_timer_timeout():
+	# Ketika timer selesai, nonaktifkan boost
+	boost_power_active = false
+	boost_detail.text = "Boost: +%d Click" % click_power_from_boost
+	boost_button.disabled = false
 
-	# Update detail klik tambahan
-	var level_click_detail = "Level %d: %d Click" % [shape_level, click_power_from_level]
-	var power_up_detail = "Power Up: +%d Click (Level %d)" % [click_power_from_power_up, power_up_level]
-	var auto_click_detail = "Auto Click: %d Click / %d detik (Level %d) (%.2f Click/s)" % [
-		auto_click_multiplier,  # Jumlah klik per interval
-		auto_click_interval,    # Interval waktu
-		auto_click_level,       # Level Auto Click
-		clicks_per_second       # Klik per detik
-	]
-	var boost_detail = "Boost: +%d Click" % click_power_from_boost
+func start_boost():
+	# Aktifkan boost dan mulai timer
+	boost_power_active = true
+	booster_timer.start()
+	update_boost_detail()
 
-	# Jika boost aktif, tambahkan durasi tersisa
+func update_boost_detail():
+	# Update teks boost detail dengan waktu tersisa
 	if boost_power_active:
-		var boost_time_left = int($BoosterTimer.time_left)
-		boost_detail += " (%d s remaining)" % boost_time_left
+		var boost_time_left = int(booster_timer.time_left)
+		boost_detail.text = "Boost: +%d Click (%d s remaining)" % [click_power_from_boost, boost_time_left]
+	else:
+		boost_detail.text = "Boost: +%d Click" % click_power_from_boost
 
-	# Gabungkan semua detail ke dalam satu label (atau tampilkan di label terpisah)
-	var detail_label_text = "%s\n%s\n%s\n%s" % [level_click_detail, power_up_detail, auto_click_detail, boost_detail]
-	$UI/VBoxContainer/DetailLabel.text = detail_label_text  # Pastikan ada label DetailLabel di UI Anda
-	
-# Nonaktifkan tombol Boost jika Boost sedang aktif
-	boost_button.disabled = boost_power_active
+func _process(delta):
+	# Update teks boost detail setiap frame jika boost aktif
+	if boost_power_active:
+		update_boost_detail()
+		update_ui()
 
 # Fungsi utilitas
 func calculate_upgrade_cost(level: int) -> int:
@@ -167,8 +204,14 @@ func _on_power_up_button_pressed():
 
 # AUTO CLICK
 func _on_auto_click_button_pressed():
-	var auto_click_cost = 100 + (auto_click_level * 20)  # Biaya Auto Click berdasarkan level
-	var auto_click_interval = max(1, 10 - auto_click_level)  # Interval Auto Click (minimum 1 detik)
+	var n = auto_click_level + 5  # Menyesuaikan skala biaya
+	var a = 0
+	var b = 1
+	for i in range(2, n + 1):
+		var c = a + b
+		a = b
+		b = c
+	var auto_click_cost = b * 15  # Nilai Fibonacci ke-n
 
 	if points >= auto_click_cost:
 		points -= auto_click_cost
@@ -215,8 +258,8 @@ func _on_activate_boost_pressed():
 	else: print("Poin tidak cukup untuk mengaktifkan Boost!")
 
 # Fungsi saat Boost Timer timeout
-func _on_booster_timer_timeout():
-	boost_power_active = false
-	click_power_from_boost = 0
-	boost_button.disabled = false  # Aktifkan kembali tombol Boost
-	update_ui()
+#func _on_booster_timer_timeout():
+	#boost_power_active = false
+	#click_power_from_boost = 0
+	#boost_button.disabled = false  # Aktifkan kembali tombol Boost
+	#update_ui()
