@@ -112,7 +112,6 @@ func update_ui():
 	powerup_level_label.text = "Lv.%d" % power_up_level
 	
 	var auto_click_interval = max(1, 10 - auto_click_level) if auto_click_level <= 10 else 1
-	#var clicks_per_second = float(auto_click_multiplier) / float(auto_click_interval)
 	
 	# AUTO CLICK UPDATE
 	var n = auto_click_level + 5
@@ -161,7 +160,6 @@ func update_ui():
 	boost_button.disabled = boost_power_active
 	
 	# Update biaya Power Up
-	#var power_up_cost = 50 + (power_up_level * 10)
 	power_up_cost_label.text = "Power Up Cost: %d" % power_up_cost
 
 	# Update biaya Auto Click
@@ -207,35 +205,6 @@ func _process(delta):
 		update_boost_detail()
 		update_ui()
 
-# func _on_booster_timer_timeout():
-	# Reset boost power ketika timer habis
-	# click_power_from_boost = 0
-	# boost_power_active = false
-	# boost_button.disabled = false
-	# update_booster_cost_button.text = "ACTIVATE BOOSTER\nCost: 200 Poin"
-	# boost_detail.text = "Increase click by +500 Click for 10 s"  # Aktifkan kembali tombol Boost
-	# update_ui()
-
-# func start_boost():
-	# Aktifkan boost dan mulai timer
-	# boost_power_active = true
-	# booster_timer.start()
-	# update_boost_detail()
-
-# func update_boost_detail():
-	# Update teks boost detail dengan waktu tersisa
-	# if boost_power_active:
-	# 	var boost_time_left = int(booster_timer.time_left)
-	# 	boost_detail.text = "Increase click by +%d Click for %d s" % [click_power_from_boost, boost_time_left]
-	# else:
-	# 	boost_detail.text = "Boost: +%d Click" % click_power_from_boost
-
-# func _process(delta):
-	# Update teks boost detail setiap frame jika boost aktif
-	# if boost_power_active:
-	# 	update_boost_detail()
-	# 	update_ui()
-
 # Fungsi utilitas
 func calculate_upgrade_cost(level: int) -> int:
 	return int(10 * pow(1.75, level - 1))
@@ -245,8 +214,6 @@ func calculate_click_power_from_level(level: int) -> int:
 
 func calculate_autoclick_power_from_level(level: int) -> Dictionary:
 	# Menghasilkan dictionary berisi:
-	# - multiplier: jumlah klik per interval
-	# - interval: waktu antara auto click (dalam detik)
 	var result = {
 		"multiplier": 1,
 		"interval": max(1.0, 10.0 - level)  # Minimum interval 1 detik
@@ -346,10 +313,3 @@ func _on_activate_boost_pressed():
 		update_ui()
 	else:
 		print("Not enough points for Boost!")
-
-# Fungsi saat Boost Timer timeout
-#func _on_booster_timer_timeout():
-	#boost_power_active = false
-	#click_power_from_boost = 0
-	#boost_button.disabled = false  # Aktifkan kembali tombol Boost
-	#update_ui()

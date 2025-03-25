@@ -89,10 +89,9 @@ offset_top = 544.0
 offset_bottom = -0.291992
 grow_horizontal = 2
 tab_alignment = 1
-current_tab = 3
+current_tab = 0
 
 [node name="UPGRADE" type="VBoxContainer" parent="CanvasLayer/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -383,6 +382,7 @@ size_flags_horizontal = 10
 text = "UPGRADE"
 
 [node name="BOOSTER" type="VBoxContainer" parent="CanvasLayer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
