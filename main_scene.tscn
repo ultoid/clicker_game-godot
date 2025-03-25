@@ -89,9 +89,10 @@ offset_top = 544.0
 offset_bottom = -0.291992
 grow_horizontal = 2
 tab_alignment = 1
-current_tab = 0
+current_tab = 3
 
 [node name="UPGRADE" type="VBoxContainer" parent="CanvasLayer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -100,37 +101,39 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("3_gyfs4")
-expand_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.28
 
-[node name="ShapeLevelLabel" type="Label" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/TextureRect"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-offset_top = 33.0
-offset_right = 54.0
-offset_bottom = 56.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 14
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.32
+texture = ExtResource("3_gyfs4")
+expand_mode = 4
+
+[node name="ShapeLevelLabel" type="Label" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
 text = "Lv.1"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.1
+size_flags_stretch_ratio = 0.01
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -150,7 +153,7 @@ text = "Upgrade Cost: 0"
 [node name="Control2" type="Control" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.2
+size_flags_stretch_ratio = 0.02
 
 [node name="UpgradeButton" type="Button" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -176,10 +179,22 @@ theme_override_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.07
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.32
 texture = ExtResource("3_gyfs4")
-expand_mode = 3
+expand_mode = 4
+
+[node name="PowerUpLevel" type="Label" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Lv.0"
+horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -188,30 +203,34 @@ size_flags_stretch_ratio = 0.01
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 21
 text = "NORMAL POWER UP"
 
 [node name="PowerUpDetail" type="Label" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
-text = "+1 Click"
+text = "Increase click power by 1 Click"
 
 [node name="PowerUpCostLabel" type="Label" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Power Up Cost: 0"
 
 [node name="Control2" type="Control" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.05
+size_flags_stretch_ratio = 0.02
 
 [node name="PowerUpButton" type="Button" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
-text = "UPGRADE"
+text = "+1
+Cost: "
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/TabContainer/POWERUP"]
 visible = false
@@ -272,10 +291,20 @@ theme_override_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 texture = ExtResource("3_gyfs4")
-expand_mode = 3
+expand_mode = 4
+
+[node name="AutoClickLevelLabel" type="Label" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Lv.0"
+horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -284,17 +313,20 @@ size_flags_stretch_ratio = 0.05
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 19
 text = "NORMAL AUTO CLICK"
 
 [node name="AutoClickDetail" type="Label" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "+1 Click / 10 Second"
+theme_override_font_sizes/font_size = 10
+text = "Increase auto click by 0.00 → 0.00 Click/s"
 
 [node name="AutoClickCostLabel" type="Label" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Auto Click Cost: 0"
 
@@ -306,7 +338,8 @@ size_flags_stretch_ratio = 0.1
 [node name="AutoClickButton" type="Button" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "UPGRADE"
+text = "+0.00 Click/s
+Cost: 0"
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/TabContainer/AUTOCLICK"]
 visible = false
@@ -350,7 +383,6 @@ size_flags_horizontal = 10
 text = "UPGRADE"
 
 [node name="BOOSTER" type="VBoxContainer" parent="CanvasLayer/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -379,17 +411,20 @@ size_flags_stretch_ratio = 0.05
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 21
 text = "NORMAL BOOSTER"
 
 [node name="BoostDetail" type="Label" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "+500 Click for 10 Seconds"
+theme_override_font_sizes/font_size = 10
+text = "Increase click power by +500 Click for 10 Seconds"
 
 [node name="BoostCostLabel" type="Label" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Boost Cost: 0"
 
@@ -401,7 +436,8 @@ size_flags_stretch_ratio = 0.05
 [node name="ActivateBoost" type="Button" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "ACTIVATE BOOST"
+text = "ACTIVATE BOOST
+Cost : 200"
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/TabContainer/BOOSTER"]
 visible = false
