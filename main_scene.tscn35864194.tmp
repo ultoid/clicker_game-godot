@@ -1,11 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://0p83shshedi4"]
+[gd_scene load_steps=8 format=3 uid="uid://0p83shshedi4"]
 
 [ext_resource type="Script" uid="uid://dqefh17q23qyw" path="res://main_scene.gd" id="1_0f027"]
 [ext_resource type="Texture2D" uid="uid://cfjjvtfujyb4p" path="res://assets/point.png" id="2_2c62f"]
-[ext_resource type="Texture2D" uid="uid://bc67ai6x15vlf" path="res://assets/bg.jpg" id="2_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://cp6cdotfh2o4h" path="res://icon.svg" id="3_gyfs4"]
-[ext_resource type="AudioStream" uid="uid://c71tdr1u5xism" path="res://assets/click_sound.wav" id="4_8mm7a"]
-[ext_resource type="AudioStream" uid="uid://c2w0perahs8sp" path="res://assets/levelup_sound.wav" id="6_hq1ik"]
 
 [sub_resource type="Animation" id="Animation_gyfs4"]
 length = 0.001
@@ -62,13 +59,8 @@ size_flags_vertical = 3
 [node name="Shape" type="Area2D" parent="UI"]
 position = Vector2(0, 35)
 
-[node name="Bg" type="Sprite2D" parent="UI/Shape"]
-position = Vector2(333, -126)
-scale = Vector2(1.2375, 1.2375)
-texture = ExtResource("2_d5x1h")
-
 [node name="Shape2D" type="Sprite2D" parent="UI/Shape"]
-position = Vector2(272, 343)
+position = Vector2(241, 319)
 scale = Vector2(3, 3)
 texture = ExtResource("2_2c62f")
 
@@ -77,11 +69,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_d5x1h")
 }
 
-[node name="ClickSoundPlay" type="AudioStreamPlayer2D" parent="UI/Shape/Shape2D"]
-stream = ExtResource("4_8mm7a")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Shape"]
-position = Vector2(266.5, 339.5)
+position = Vector2(235.5, 315.5)
 shape = SubResource("RectangleShape2D_2c62f")
 
 [node name="AutoClickTimer" type="Timer" parent="."]
@@ -97,12 +86,13 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.998
 offset_top = 544.0
-offset_bottom = 1.91998
+offset_bottom = -0.291992
 grow_horizontal = 2
 tab_alignment = 1
-current_tab = 0
+current_tab = 4
 
 [node name="UPGRADE" type="VBoxContainer" parent="CanvasLayer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -111,39 +101,37 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.28
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.32
 texture = ExtResource("3_gyfs4")
-expand_mode = 4
+expand_mode = 2
 
-[node name="ShapeLevelLabel" type="Label" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="ShapeLevelLabel" type="Label" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/TextureRect"]
 layout_mode = 2
+offset_top = 33.0
+offset_right = 54.0
+offset_bottom = 56.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 14
 text = "Lv.1"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.01
+size_flags_stretch_ratio = 0.1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
-alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -163,16 +151,13 @@ text = "Upgrade Cost: 0"
 [node name="Control2" type="Control" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.02
+size_flags_stretch_ratio = 0.2
 
 [node name="UpgradeButton" type="Button" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "+2
 Cost: 10 Poin"
-
-[node name="LevelUpSoundPlay" type="AudioStreamPlayer2D" parent="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/UpgradeButton"]
-stream = ExtResource("6_hq1ik")
 
 [node name="POWERUP" type="VBoxContainer" parent="CanvasLayer/TabContainer"]
 visible = false
@@ -192,22 +177,10 @@ theme_override_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.07
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.32
 texture = ExtResource("3_gyfs4")
-expand_mode = 4
-
-[node name="PowerUpLevel" type="Label" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-text = "Lv.0"
-horizontal_alignment = 1
+expand_mode = 3
 
 [node name="Control" type="Control" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -216,34 +189,30 @@ size_flags_stretch_ratio = 0.01
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
-alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 21
 text = "NORMAL POWER UP"
 
 [node name="PowerUpDetail" type="Label" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
-text = "Increase click power by 1 Click"
+text = "+1 Click"
 
 [node name="PowerUpCostLabel" type="Label" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "Power Up Cost: 0"
 
 [node name="Control2" type="Control" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.02
+size_flags_stretch_ratio = 0.05
 
 [node name="PowerUpButton" type="Button" parent="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
-text = "+1
-Cost: "
+text = "UPGRADE"
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/TabContainer/POWERUP"]
 visible = false
@@ -304,20 +273,10 @@ theme_override_constants/margin_bottom = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.3
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("3_gyfs4")
-expand_mode = 4
-
-[node name="AutoClickLevelLabel" type="Label" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-text = "Lv.0"
-horizontal_alignment = 1
+expand_mode = 3
 
 [node name="Control" type="Control" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -326,20 +285,17 @@ size_flags_stretch_ratio = 0.05
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
-alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 19
 text = "NORMAL AUTO CLICK"
 
 [node name="AutoClickDetail" type="Label" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Increase auto click by 0.00 → 0.00 Click/s"
+theme_override_font_sizes/font_size = 13
+text = "+1 Click / 10 Second"
 
 [node name="AutoClickCostLabel" type="Label" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "Auto Click Cost: 0"
 
@@ -351,8 +307,7 @@ size_flags_stretch_ratio = 0.1
 [node name="AutoClickButton" type="Button" parent="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "+0.00 Click/s
-Cost: 0"
+text = "UPGRADE"
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/TabContainer/AUTOCLICK"]
 visible = false
@@ -425,20 +380,17 @@ size_flags_stretch_ratio = 0.05
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
-alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 21
 text = "NORMAL BOOSTER"
 
 [node name="BoostDetail" type="Label" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Increase click power by +500 Click for 10 Seconds"
+theme_override_font_sizes/font_size = 13
+text = "+500 Click for 10 Seconds"
 
 [node name="BoostCostLabel" type="Label" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "Boost Cost: 0"
 
@@ -447,18 +399,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.05
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ActivateBoost" type="Button" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="ActivateBoost" type="Button" parent="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "ACTIVATE BOOST
-Cost : 20,000"
+text = "ACTIVATE BOOST"
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/TabContainer/BOOSTER"]
 visible = false
@@ -502,7 +446,6 @@ size_flags_horizontal = 10
 text = "UPGRADE"
 
 [node name="DETAILS" type="VBoxContainer" parent="CanvasLayer/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 
@@ -547,8 +490,8 @@ anchors_preset = -1
 anchor_top = 0.054
 anchor_right = 1.0
 anchor_bottom = 0.181
-offset_top = 0.16
-offset_bottom = 26.24
+offset_top = -0.116001
+offset_bottom = 0.425995
 grow_horizontal = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
@@ -563,15 +506,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MoneyLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Money : "
-
 [node name="PointsLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 40
 text = "Points: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -594,4 +531,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TabContainer/POWERUP/PanelContainer2/MarginContainer/HBoxContainer/PowerUpButton" to="." method="_on_power_up_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TabContainer/AUTOCLICK/PanelContainer2/MarginContainer/HBoxContainer/AutoClickButton" to="." method="_on_auto_click_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/ActivateBoost" to="." method="_on_activate_boost_pressed"]
+[connection signal="pressed" from="CanvasLayer/TabContainer/BOOSTER/PanelContainer2/MarginContainer/HBoxContainer/ActivateBoost" to="." method="_on_activate_boost_pressed"]
