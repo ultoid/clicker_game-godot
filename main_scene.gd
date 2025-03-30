@@ -65,6 +65,10 @@ var boost_power_duration: float = 10.0
 @onready var click_sound: AudioStreamPlayer2D = $UI/Shape/Shape2D/ClickSoundPlay
 @onready var levelup_sound: AudioStreamPlayer2D = $CanvasLayer/TabContainer/UPGRADE/PanelContainer2/MarginContainer/HBoxContainer/UpgradeButton/LevelUpSoundPlay
 
+# warning dialog
+var warning_dialog = preload("res://warningdialog.tscn")
+var warning_dialog_instance: Node2D
+
 # IMAGE PERUBAHAN SHAPE LEVEL
 var shapes: Array = [
 	"res://assets/point.png", "res://assets/line.png", "res://assets/Shape-1.png", "res://assets/Shape-2.png", "res://assets/Shape-3.png",
@@ -78,6 +82,19 @@ var shapes: Array = [
 func _ready():
 	update_ui()
 	auto_click_timer.wait_time = auto_click_interval
+
+	# Instantiate warning dialog
+	warning_dialog_instance = warning_dialog.instantiate()
+	add_child(warning_dialog_instance)
+	warning_dialog_instance.visible = false  # Sembunyikan di awal
+
+func show_warning(message: String):
+	if warning_dialog_instance:
+		warning_dialog_instance.show_message(message)
+		# Posisikan di layer teratas
+		move_child(warning_dialog_instance, get_child_count() - 1)
+	else:
+		push_error("WarningDialog instance not created!")
 
 # FORMAT MONEY: 1000 → "1.00k", 1000000 → "1m"
 func format_money(amount: int) -> String:
@@ -277,7 +294,8 @@ func _on_upgrade_button_pressed():
 		
 		update_ui()
 	else:
-		print("Poin tidak cukup untuk upgrade!")
+		show_warning("Not enough money for upgrade!\nYou need %s more." % 
+			format_money(upgrade_cost - money))
 
 # POWER UP
 func _on_power_up_button_pressed():
@@ -288,7 +306,7 @@ func _on_power_up_button_pressed():
 		money_per_click = 100 + (power_up_level * 10)
 		update_ui()
 	else:
-		print("Poin tidak cukup untuk membeli Power Up!")
+		show_warning("Not enough money for buy Power Up!\n You need %s more." % format_money(cost - money))
 
 # AUTO CLICK
 func _on_auto_click_button_pressed():
@@ -305,7 +323,8 @@ func _on_auto_click_button_pressed():
 			$AutoClickTimer.start()
 			update_ui()
 	else:
-		print("Poin tidak cukup untuk membeli Auto Click!")
+		show_warning("Not enough money for buy Auto Click!\n You need %s more." % format_money(auto_click_cost - money))
+		#print("Poin tidak cukup untuk membeli Auto Click!")
 
 # Fungsi saat Auto Click Timer timeout
 func _on_auto_click_timer_timeout():
@@ -324,4 +343,4 @@ func _on_activate_boost_pressed():
 		booster_timer.start(boost_power_duration)
 		update_ui()
 	else:
-		print("Not enough points for Boost!")
+		show_warning("Not enough money for Boost!\n You need %s more." % format_money(boost_cost - money))
